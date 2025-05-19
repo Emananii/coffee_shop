@@ -49,15 +49,15 @@ class Order:
             raise ValueError("Price must be a positive number.")
 
 
-c1 = Customer("Alice", "alice@example.com")
-coffee1 = Coffee("Latte", 4.5)
+# c1 = Customer("Emmanuel", "emmanuelwambugu5@gmail.com")
+# coffee1 = Coffee("Latte", 4.5)
 
-order1 = Order(c1, coffee1)
-print(order1.customer.name)   # Alice
-print(order1.coffee.name)     # Latte
-print(order1.price)           # 4.5
-print(order1.timestamp)       # Current datetime
+# order1 = Order(c1, coffee1)
+# print(order1.customer.name)   # Alice
+# print(order1.coffee.name)     # Latte
+# print(order1.price)           # 4.5
+# print(order1.timestamp)       # Current datetime
 
-print("All orders:", Order.get_all_orders())
-print("Customer's coffees:", c1.coffees())
-print("Coffee's customers:", coffee1.customers())
+# print("All orders:", Order.get_all_orders())
+# print("Customer's coffees:", c1.coffees())
+# print("Coffee's customers:", coffee1.customers())
