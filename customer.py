@@ -5,6 +5,9 @@ class Customer:
         self.name = name
         self.email = email
 
+    def __repr__(self):
+        return f"<Customer: {self.name} - ({self.email})>"
+
     @property
     def name(self):
         return self._name

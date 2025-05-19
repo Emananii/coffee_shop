@@ -4,7 +4,7 @@ from coffee import Coffee
 from order import Order
 
 c1 = Customer("Emmanuel", "emmanuel@gmail.com")
-coffee1 = Coffee("Latte", 4.5)
+coffee1 = Coffee("Latte", 450)
 
 order1 = Order(c1, coffee1)
 

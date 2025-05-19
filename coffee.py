@@ -3,6 +3,8 @@ class Coffee:
         self.name = name
         self.price = price
 
+    def __repr__(self):
+        return f"<Coffee: {self.name} - Ksh{self.price}>"
     @property
     def name(self):
         return self._name

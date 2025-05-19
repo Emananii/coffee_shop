@@ -11,6 +11,8 @@ class Order:
         self.timestamp = datetime.now()
         Order._all_orders.append(self)
 
+    def __repr__(self):
+        return f"<Order: {self.customer.name} ordered {self.coffee.name} for Ksh{self.price}>"
     @classmethod
     def get_all_orders(cls):
         return cls._all_orders
