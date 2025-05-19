@@ -1,0 +1,10 @@
+A Customer can place many Orders:
+    Customer ↔ Order: One-to-many (Customer has many Orders).
+
+A Coffee can have many Orders:
+    Coffee ↔ Order: One-to-many (Coffee has many Orders).
+
+An Order belongs to one Customer and one Coffee.
+    Customer ↔ Coffee: Many-to-many (via Orders).
+
+    (Customer 1 --- * Order * --- 1 Coffee)
