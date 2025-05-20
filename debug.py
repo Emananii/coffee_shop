@@ -1,4 +1,3 @@
-# main.py
 from .customer import Customer
 from .coffee import Coffee
 from .order import Order
@@ -22,3 +21,7 @@ if top:
     print(f"The top aficionado for {latte.name} is {top.name}")
 else:
     print(f"No aficionados yet for {latte.name}")
+
+print(f"\nOrders by {c1.name}:")
+for order in c1.orders():
+    print(f"  - {order.coffee.name} at Ksh{order.price} on {order.timestamp}")
