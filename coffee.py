@@ -1,7 +1,6 @@
 class Coffee:
-    def __init__(self, name, price):
+    def __init__(self, name):
         self.name = name
-        self.price = price
 
     def __repr__(self):
         return f"<Coffee: {self.name} - Ksh{self.price}>"
@@ -28,18 +27,21 @@ class Coffee:
             raise ValueError("Price must be a positive number.")
         
     def orders(self):
-        from order import Order
+        from .order import Order
         return [order for order in Order.get_all_orders() if order.coffee == self]
 
     def customers(self):
         return list({order.customer for order in self.orders()})
-
-# coffee1 = Coffee("Espresso", 2.5)
-# print(coffee1.name) 
-# print(coffee1.price)
-
-# coffee1.price = 3.0
-# print(coffee1.price) 
-
-# coffee1.name = "   Cappuccino   "
-# print(coffee1.name)
+    
+    def num_orders(self):
+        from .order import Order
+        return len([order for order in Order.get_all_orders() if order.coffee == self])
+    
+    def average_price(self):
+        from .order import Order
+        prices = [order.price for order in Order.get_all_orders() if order.coffee == self]
+        if prices:
+            return round(sum(prices) / len(prices), 2)
+        else:
+            return print("No orders for this coffee yet: ", 0.0)
+        

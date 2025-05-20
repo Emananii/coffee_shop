@@ -1,18 +1,35 @@
 import re
 
 class Customer:
+    _all = []
     def __init__(self, name, email):
         self.name = name
         self.email = email
+        Customer._all.append(self)
 
+    @classmethod
+    def most_aficionado(cls, coffee):
+        top_customer = None
+        max_spent = 0
+
+        for customer in cls._all:
+            total_spent = sum(
+                order.price for order in customer.orders() if order.coffee == coffee
+            )
+
+            if total_spent > max_spent:
+                max_spent = total_spent
+                top_customer = customer
+
+        return top_customer if max_spent > 0 else None
     def __repr__(self):
         return f"<Customer: {self.name} - ({self.email})>"
 
-    @property
+    @property #getter method for name
     def name(self):
         return self._name
 
-    @name.setter
+    @name.setter #setter method for name with validation
     def name(self, value):
         if isinstance(value, str):
             if re.fullmatch(r"[A-Za-z]{1,15}", value):
@@ -39,10 +56,13 @@ class Customer:
         
     
     def orders(self):
-        from order import Order
+        from .order import Order
         return [order for order in Order.get_all_orders() if order.customer == self]
     
     def coffees(self):
         return list({order.coffee for order in self.orders()})
-
+    
+    def create_order(self, coffee, price):
+        from .order import Order
+        return Order(customer = self, coffee = coffee, price = price)
     

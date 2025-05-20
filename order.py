@@ -1,6 +1,6 @@
 from datetime import datetime
-from customer import Customer
-from coffee import Coffee
+from .customer import Customer
+from .coffee import Coffee
 
 class Order:
     _all_orders = []
@@ -49,17 +49,4 @@ class Order:
             self._price = float(value)
         else:
             raise ValueError("Price must be a positive number.")
-
-
-# c1 = Customer("Emmanuel", "emmanuelwambugu5@gmail.com")
-# coffee1 = Coffee("Latte", 4.5)
-
-# order1 = Order(c1, coffee1)
-# print(order1.customer.name)   # Alice
-# print(order1.coffee.name)     # Latte
-# print(order1.price)           # 4.5
-# print(order1.timestamp)       # Current datetime
-
-# print("All orders:", Order.get_all_orders())
-# print("Customer's coffees:", c1.coffees())
-# print("Coffee's customers:", coffee1.customers())
+        
