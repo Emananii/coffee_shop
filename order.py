@@ -13,9 +13,6 @@ class Order:
         self.timestamp = datetime.now()
         Order._all_orders.append(self)
 
-    def __repr__(self):
-        return f"<Order: {self.customer.name} ordered {self.coffee.name} for Ksh{self.price}>"
-
     @classmethod
     def get_all_orders(cls):
         return cls._all_orders
@@ -47,8 +44,14 @@ class Order:
 
     @price.setter
     def price(self, value):
-        if not isinstance(value, (int, float)):
+        self._price = self._validate_price(value)
+
+    def _validate_price(self, price):
+        if not isinstance(price, (int, float)):
             raise TypeError("Price must be a number (int or float).")
-        if value <= 0:
+        if price <= 0:
             raise ValueError("Price must be a positive number.")
-        self._price = float(value)
+        return float(price)
+
+    def __repr__(self):
+        return f"<Order: {self.customer.name} ordered {self.coffee.name} for Ksh{self.price}>"

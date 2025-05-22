@@ -7,6 +7,37 @@ class Customer:
         self.email = email
         Customer._all.append(self)
 
+
+    @property #getter method for name
+    def name(self):
+        return self._name
+
+    @name.setter #setter method for name with validation
+    def name(self, value):
+        self._name = self._validate_name(value)
+        
+    def _validate_name(self, name):
+        if not isinstance(name, str):
+            raise TypeError("Name must be a string")
+        if not re.fullmatch(r"[A-Za-z]{1,15}", name):
+            raise ValueError("Name must be a string of 1 to 15 alphabetic characters")
+        return name.strip()
+
+    @property
+    def email(self):
+        return self._email
+    
+    @email.setter
+    def email(self, value):
+        self._email = self._validate_email(value)
+        
+    def _validate_email(self, email):
+        if not isinstance(email, str):
+            raise TypeError("Email must be a string")
+        if not re.fullmatch(r"[^@]+@[^@]+\.[^@]+", email):
+            raise ValueError("Email must be a valid email address")
+        return email.strip()
+        
     @classmethod
     def most_aficionado(cls, coffee):
         top_customer = None
@@ -24,35 +55,6 @@ class Customer:
         return top_customer if max_spent > 0 else None
     def __repr__(self):
         return f"<Customer: {self.name} - ({self.email})>"
-
-    @property #getter method for name
-    def name(self):
-        return self._name
-
-    @name.setter #setter method for name with validation
-    def name(self, value):
-        if isinstance(value, str):
-            if re.fullmatch(r"[A-Za-z]{1,15}", value):
-                self._name = value
-            else:
-                raise ValueError(
-                    "Name must be a string of 1 to 15 alphabetic characters")
-        else:
-            raise TypeError("Name must be a string")
-
-    @property
-    def email(self):
-        return self._email
-    
-    @email.setter
-    def email(self, value):
-        if isinstance(value, str):
-            if re.fullmatch(r"[^@]+@[^@]+\.[^@]+", value):
-                self._email = value
-            else:
-                raise ValueError("Email must be a valid email address")
-        else:
-            raise TypeError("Email must be a string")
         
     
     def orders(self):

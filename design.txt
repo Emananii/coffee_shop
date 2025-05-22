@@ -7,4 +7,4 @@ A Coffee can have many Orders:
 An Order belongs to one Customer and one Coffee.
     Customer ↔ Coffee: Many-to-many (via Orders).
 
-    (Customer 1 --- * Order * --- 1 Coffee)
+    (Customer 1 ---  Order  --- 1 Coffee)
